@@ -1,0 +1,48 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <a href="/">首页</a><span>/</span><span class="current">咨询</span>
+    </div>
+    <div class="right">
+      <a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a>
+      <a class="mailto" href="mailto:#" title="发送邮件"></a>
+    </div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft">
+      <div class="left cont_left">
+        <ul class="treeview" id="tree">
+          <li class="collapsable"> <a href="/home/zx">咨询<img src="/images/icon_arrow.png"></a></li>
+        </ul>
+        <div class="regbox">
+          <%#<span><a href="exhibitor.php?ac=login&amp;act=exhibitor_info&amp;opt=login" class="exhibitor_reg" title="展商登记"></a></span>%>
+          <%#<span><a href="visitor.php?ac=login&amp;act=visitor&amp;opt=login" class="visitor_reg" title="观众登记"></a></span>%>
+        </div>
+      </div>
+      <div class="right cont_right">
+        <table class="download_zx_tb" width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tbody><tr>
+              <td width="20%" height="35" align="right" valign="top">*姓　名：&nbsp;</td>
+              <td valign="top"><input name="user_name" type="text" maxlength="50" id="user_name" class="input_user"></td>
+            </tr>
+            <tr>
+              <td height="35" align="right" valign="top" class="">*电　邮：&nbsp;</td>
+              <td valign="top"><input name="email" type="text" maxlength="100" id="email" class="input_email"></td>
+            </tr>
+            <tr>
+              <td height="115" align="right" valign="top" class="">*咨　询：&nbsp;</td>
+              <td valign="top"><textarea name="content1" cols="40" rows="6" id="content1" class="textarea_zx"></textarea></td>
+            </tr>
+            <tr>
+              <td class="" align="right"></td>
+              <td>
+                <input name="input" type="button" value="" onclick="submit_comment();" class="sub_zx_tb" style="width:58px;height:26px; border:0px;"> 
+                <span id="show_msg" class=""></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

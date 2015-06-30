@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="icon-user"></i>
+    普通用户帐号信息
+  </div>
+  <div class="panel-body">
+    <ul class="list-group list-group-lg no-bg auto">
+      <li class="list-group-item clearfix">用户名: <%= @user.username %></li>
+      <li class="list-group-item clearfix">创建时间: <%= @user.created_at %></li>
+      <li class="list-group-item clearfix">登录次数: <%= @user.sign_in_count %></li>
+      <li class="list-group-item clearfix">最后一次登录时间: <%= @user.last_sign_in_at %></li>
+      <li class="list-group-item clearfix">最后一次登录ip: <%= @user.last_sign_in_ip %></li>
+      <li class="list-group-item clearfix">用户类型: <%= @user.type %></li>
+      <% if @user.type == "exhibitor" %>
+        <li class="list-group-item clearfix">真实姓名: <%= @user.exhibitor.real_name %></li>
+        <li class="list-group-item clearfix">手机: <%= @user.exhibitor.mobile %></li>
+        <li class="list-group-item clearfix">参展商名称: <%= @user.exhibitor.name %></li>
+      <% end %>
+      <% if @user.type == "professional_visitor" %>
+        <li class="list-group-item clearfix">真实姓名: <%= @user.professional_visitor.real_name %></li>
+        <li class="list-group-item clearfix">手机: <%= @user.professional_visitor.mobile %></li>
+        <li class="list-group-item clearfix">年龄: <%= @user.professional_visitor.age %></li>
+      <% end %>
+      <li class="list-group-item clearfix">帐号状态 <%= @user.access_locked? ? '停用' : '正常' %></li>
+    </ul>
+
+  </div>
+  <div class="text-center m-b">
+    <%= link_to '编辑', edit_admin_user_path(@user), class: 'btn btn-info' %>
+    <%= link_to '返回', admin_users_path, class: 'btn btn-default'%>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+<a href="/">首页</a><span>/</span><span class="current">搜索</span>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft" >
+
+
+          <ul class="news_list" style="padding: 0 50px 0 50px">
+            <%= render(@infos) || raw('没有任何信息') %>
+          </ul>
+          <div class="pages" style="padding-left: 50px" >
+            <%= paginate @infos, :views_prefix => 'front'  %>
+          </div>
+    </div>
+  </div>
+</div>
+
+
+

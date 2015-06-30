@@ -1,0 +1,14 @@
+<%@item_types.each do |item_type|%>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"><%=item_type.name%></label>
+      <div class="col-sm-10">
+        <%if item_type.content_type==Settings.content_type.attachment  %>
+            <input name="item[<%= item_type.id%>]" type="file" class="form-control">
+        <%elsif item_type.content_type==Settings.content_type.text%>
+            <input name="item[<%= item_type.id%>]" type="text" class="form-control">
+        <%end%>
+      </div>
+    </div>
+
+<%end%>
+

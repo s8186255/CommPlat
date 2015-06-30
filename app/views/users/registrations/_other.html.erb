@@ -1,0 +1,74 @@
+<div class="text-danger wrapper text-center">
+  <%= flash_messages %>
+</div>
+<div class="list-group list-group-sm">
+  <div class="list-group-item">
+    <%= f.input :username,  placeholder: "用户名", required: true, autofocus: true %>
+  </div>
+  <div class="list-group-item">
+    <%= f.input :email, label: false, placeholder: "电子邮箱", required: true %>
+  </div>
+  <%#=  f.input :type,  label: false,   collection: {"专业观众": "professional_visitor", "参展商": "exhibitor"}, prompt: "用户类型" %>
+  <%=  f.input :type, as: :hidden,  label: false,  input_html: {value: @user_type }  %>
+  <div class="list-group-item">
+    <%= f.input :password, label: false, placeholder: "密码", required: true %>
+  </div>
+  <div class="list-group-item">
+    <%= f.input :password_confirmation, label: false, placeholder: "确认密码", required: true %>
+  </div>
+</div>
+<div class="list-group list-group-sm">
+  <% if @user_type == 'exhibitor' %>
+    <%= f.simple_fields_for :exhibitor do |ex| %>
+      <div class="list-group-item">
+        <%= ex.input :real_name, label: false, placeholder: "联系人", required: true  %>
+      </div>
+      <div class="list-group-item">
+        <%= ex.input :phone, label: false, placeholder: "电话", required: true  %>
+      </div>
+      <div class="list-group-item">
+        <%= ex.input :mobile, label: false, placeholder: "手机", required: true  %>
+      </div>
+      <div class="list-group-item">
+
+        <span>参展范围:</span>
+        <% Settings.exhibitor.scopes.each do |scope| %>
+          <label class="checkbox-inline">
+            <input id="user_exhibitor_attributes_scopes_" type="checkbox" value="<%= scope %>" name="user[exhibitor_attributes][scopes][]"> <%= scope %>
+        </label>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+<% if @user_type == 'professional_visitor' %>
+  <%= f.simple_fields_for :professional_visitor do |pv| %>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+    <div class="list-group-item">
+    </div>
+  <% end %>
+<% end %>

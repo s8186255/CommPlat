@@ -1,0 +1,211 @@
+
+<style type="text/css" media="all">
+  .f14_red {
+    color: red;
+  }
+  .error {
+    color: red;
+  }
+  .checkbox1 {
+    margin: 5px 5px 5px 15px;
+  }
+
+</style>
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <%#= render "top_menu" %>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft">
+
+      <div class="left cont_left">
+        <ul class="treeview" id="tree">
+
+          <li class="<%= @user_type == 'professional_visitor' ? 'collapsable' : 'expandable'  %>">
+            <%= link_to new_user_registration_path(user_type: "professional_visitor", step: "1") do  %>
+              专业观众注册
+              <img src="/images/icon_arrow.png">
+            <% end %>
+          </li>
+          <li class="<%= @user_type == 'exhibitor' ? 'collapsable' : 'expandable'  %>">
+            <%= link_to(new_user_registration_path(user_type: "exhibitor", step: "1")) do   %>
+              参展商注册
+              <img src="/images/icon_arrow.png">
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right cont_right">
+        <%#= devise_error_messages! %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), wrapper: :normal, defaults: { label: false, input_html: { class: 'input_user2' } }  ) do |f| %>
+          <table class="table" width="100%" cellspacing="1" cellpadding="5" bordercolor="#dddddd" border="0" bgcolor="#F3F3F3">
+            <tbody>
+              <tr valign="bottom" bgcolor="#999999">
+                <td width="120" height="27" bgcolor="#FAFAFA">
+                  <strong>用户注册</strong></td>
+                <td width="580" height="27" bgcolor="#FAFAFA" colspan="3">
+                  <div align="left"><strong>注：带<span class="f14_red">*&nbsp;</span>号项为必填项</strong></div>
+                </td>
+              </tr>
+              <tr bgcolor="#ffffff">
+                <td align="left"><span class="f14_red">*&nbsp;</span>用户名：</td>
+                <td colspan="3">
+                  <%= f.input :username, required: true, autofocus: true %>
+                  （字母与数字）
+                </td>
+              </tr>
+              <tr bgcolor="#ffffff">
+                <td align="left"><span class="f14_red">*&nbsp;</span>电子邮箱：</td>
+                <td colspan="3">
+                  <%= f.input :email, required: true, autofocus: true %>
+                  (邮箱用于激活和找回密码，请务必填写正确)
+                </td>
+              </tr>
+              <tr bgcolor="#ffffff">
+                <td align="left">
+                  <div>
+                    <span class="f14_red">*&nbsp;</span>密码：</div>
+                </td>
+                <td>
+                  <div align="left">
+                    <%= f.input :password, required: true, autofocus: true %>
+                  </div>
+                </td>
+                <td bgcolor="#ffffff">
+                  <div align="left" style="width:100px">
+                    <span class="f14_red">*&nbsp;</span>重复密码：</div>
+                </td>
+                <td bgcolor="#ffffff">
+                  <div align="left">
+                    <%=  f.input :type, as: :hidden,  label: false,  input_html: {value: @user_type }  %>
+                    <%= f.input :password_confirmation, label: false, required: true %>
+                  </td>
+                </tr>
+                <% if @user_type == 'professional_visitor' %>
+                  <%= f.simple_fields_for :professional_visitor do |pv| %>
+                    <tr bgcolor="#ffffff">
+                      <td width="120" align="left" height="25"><span class="f14_red">*&nbsp;</span>姓名：</td>
+                      <td width="240">
+                        <%= pv.input :real_name, label: false, required: true  %>
+                      </td>
+                      <td align="left" width="80"><span class="f14_red">*&nbsp;</span>性别：</td>
+                      <td width="240">
+                        <%= pv.input :sex, label: false, default: 1, collection: Settings.professional_visitor.sex, required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25">&nbsp;&nbsp;&nbsp;英文姓名：</td>
+                      <td>
+                        <%= pv.input :english_name, label: false, required: true  %>
+                      </td>
+                      <td align="left"><span class="f14_red">*&nbsp;</span>职务：</td>
+                      <td>
+                        <%= pv.input :job, label: false,  required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>单位名称：</td>
+                      <td>
+                        <%= pv.input :company_name, label: false, required: true  %>
+                      </td>
+                      <td align="left">&nbsp;&nbsp;&nbsp;部门：</td>
+                      <td>
+                        <%= pv.input :department, label: false,  required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>单位地址：</td>
+                      <td colspan=3>
+                        <%= pv.input :company_addr, label: false,  required: true, input_html: { class: 'input_user3' }   %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>国家/地区：</td>
+                      <td colspan=3>
+                        <%= pv.input :area, label: false, collection: Settings.professional_visitor.area, default: 1,  required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>手机：</td>
+                      <td align="left" height="25">
+                        <%= pv.input :mobile, label: false, required: true  %>
+                      </td>
+                      <td align="left" height="25"><span class="f14_red">&nbsp;&nbsp;&nbsp;</span>电话：</td>
+                      <td align="left" height="25">
+                        <%= pv.input :phone, label: false,  required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">&nbsp;&nbsp;&nbsp;</span>传真：</td>
+                      <td align="left" height="25">
+                        <%= pv.input :fax, label: false,  required: true  %>
+                      </td>
+                      <td align="left" height="25">&nbsp;&nbsp;&nbsp;QQ：</td>
+                      <td colspan="3" align="left" height="25">
+                        <%= pv.input :qq, label: false, required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25">&nbsp;&nbsp;&nbsp;微信：</td>
+                      <td  align="left" height="25">
+                        <%= pv.input :weixin, label: false,  required: true  %>
+                      </td>
+                      <td align="left" height="25">&nbsp;&nbsp;&nbsp;网址：</td>
+                      <td  align="left" height="25">
+                        <%= pv.input :website, label: false,  required: true  %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+
+                <% if @user_type == 'exhibitor' %>
+                  <%= f.simple_fields_for :exhibitor do |ex| %>
+
+                    <tr bgcolor="#ffffff">
+                      <td width="120" align="left" height="25"><span class="f14_red">*&nbsp;</span>联系人：</td>
+                      <td width="240">
+                        <%= ex.input :real_name, label: false, required: true  %>
+                      </td>
+                      <td align="left" width="80"><span class="f14_red">*&nbsp;</span>手机：</td>
+                      <td width="240">
+                        <%= ex.input :mobile, label: false, required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>&nbsp;电话：</td>
+                      <td colspan="3">
+                        <%= ex.input :phone, label: false, required: true  %>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#ffffff">
+                      <td align="left" height="25"><span class="f14_red">*&nbsp;</span>参展范围：</td>
+                      <td colspan="3">
+                        <%= ex.input :scopes, :as => :check_boxes,collection: Settings.exhibitor.scopes, label: false, required: true, input_html: { class: "checkbox1" }  %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+
+
+                <tr bgcolor="#ffffff">
+                  <td height="0" style="padding: 10px" align="center" valign="middle" colspan="4" >
+                    <%= f.button :submit, "注册", class: "btn" %>
+                    <input name="input" type="reset" value="清空" class="btn"></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+          <%#= render "other" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+

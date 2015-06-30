@@ -1,0 +1,2 @@
+module Users::FlashHelper
+end

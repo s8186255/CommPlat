@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>证件办理平台 <%#= @title %></title>
+    <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
+    <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="/angulr-html/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/angulr-html/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="/angulr-html/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="/angulr-html/css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/angulr-html/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="/angulr-html/css/app.css" type="text/css" />
+    <meta name="renderer" content="webkit" />
+    <%= javascript_include_tag "back/application" %>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+
+  </head>
+  <body>
+    <div class="app app-header-fixed container" style="padding-top:0px">
+
+      <div id="content" class="app-content" style="margin-left: 0px;" role="main">
+        <div class="app-content-body ">
+          <div class="bg-light lter b-b wrapper-md">
+            <h1 class="m-n font-thin h3"><a href="/"><%= @title %></a></h1>
+          </div>
+          <div class="wrapper-md">
+            <%= flash_messages %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <!-- / content -->
+
+      <!-- footer -->
+      <footer id="footer" class="app-footer" role="footer" style="margin-left:0px">
+        <div class="wrapper b-t bg-light">
+          <span class="pull-right">1.0.0 <a href ui-scroll="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+          新疆国际会展中心证件办理平台 &copy; 2015 Copyright.
+        </div>
+      </footer>
+      <!-- / footer -->
+
+    </div>
+
+  </body>
+</html>

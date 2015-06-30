@@ -1,0 +1,35 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <a href="/">首页</a><span>/</span><span class="current">重发激活邮件</span>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft" >
+
+      <div class="left cont_left">
+        <ul class="treeview" id="tree">
+          <li class="expandable"> <a href="/users/password/new" >忘记密码<img src="/images/icon_arrow.png"></a></li>
+          <li class="collapsable"> <a href="#" >重发激活邮件<img src="/images/icon_arrow.png"></a></li>
+        </ul>
+      </div>
+
+      <div class="right cont_right" >
+        <div class="right_center" style="text-align:center; padding-top:50px;  ">
+          <span>请填写邮箱地址点击重新发送激活邮件，查收邮件后进行账号激活</span>
+          <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+            <div style="MARGIN: 20px">
+              <%= f.input :email, label: false, placeholder: "邮箱", required: true, autofocus: true %>
+            </div>
+
+            <div style="MARGIN:20px">
+              <%= f.button :submit, "重发激活邮件" %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

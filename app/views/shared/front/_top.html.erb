@@ -1,0 +1,99 @@
+<style type="text/css" media="all">
+  .search_input{
+  width:110px; margin-right:10px; background: none; border:0; border-bottom:1px solid #4f4f4f; color:#969696; height:19px; line-height:19px;float:left;}
+  .search{
+    width: 180px;
+    float: left;
+  }
+  .forgot_btn{
+    margin-left:5px;
+height:19px;line-height:19px; width:60px; border:0; background:#4f4f4f;color:#969696; cursor:pointer; text-align:center;float:left;
+  }
+</style>
+<div id="scroll"><a class="scroll_t" title="返回顶部"></a></div>
+<div class="header">
+  <div class="top">
+    <div class="top_cont">
+      <div class="left weibo"><span class="sina_wb"><a href="http://weibo.com/u/5611035580" target="_blank"></a></span><span class="qq_wb"><a href="http://t.qq.com/weiboermao5346" target="_blank"></a></span></div>
+      <div class="right top_info">
+        <div class="search">
+          <form action="/search" method="get">
+            <input type="text" name="q"  class="search_input" id="q" >
+            <button type="submit" class="login_sub">搜索</button>
+          </form>
+        </div>
+        <div class="login">
+          <% if current_user %>
+            <%= link_to "退出登录" , destroy_user_session_path, method: :delete, class: "login_btn" %>
+            <a href="/admin/home" class="login_btn">管理中心</a>
+            <span style="float:right; line-height:20px"><%= current_user.username %>,您好!</span> 
+          <% else %>
+            <%= simple_form_for User.new, url: "/users/sign_in" do |f| %>
+              <input type="text" name="user[username]" placeholder="用户名" id="user_username" >
+              <input type="password" name="user[password]" placeholder="密码"  id="user_password">
+              <button type="submit" class="login_sub">登录</button>
+              <%= link_to "忘记密码", new_user_password_path, class: "forgot_btn" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header_bg">
+    <div class="header_w">
+      <div class="logo"><a href="/">安博会</a></div>
+      <%= render "/shared/front/top_nav" %>
+    </div>
+  </div>
+  </div><div id="banner">
+  <div id="slide-index" style="width: 1659px;">
+    <div class="slides" style="width: 6636px; margin-left: -1659px; background: url(/cpse/banner_1_b.jpg) 50% 0%;">
+      <%#<div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">%>
+        <%#<div class="bimg" style="background:#ca4815;"><a class="links" href="/"><img class="btxt" src="/cpse/banner_1.jpg" alt="安博会 ２０１5安博会海报一"></a></div>%>
+        <%#</div>%>
+      <div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">
+        <div class="bimg" style="background:#9e7932;"><a class="links" target="_blank" href="http://www.gsialliance.com/"><img class="btxt" src="/cpse/banner_2.jpg" alt="全球安防联盟为安博会官方唯一合作机构"></a></div>
+      </div>
+      <div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">
+        <div class="bimg" style="background:#9e7932;"><a class="links" target="_blank" href="http://www.gsialliance.com/"><img class="btxt" src="/cpse/banner_2.jpg" alt="全球安防联盟为安博会官方唯一合作机构"></a></div>
+      </div>
+      <div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">
+        <div class="bimg" style="background:#9e7932;"><a class="links" target="_blank" href="http://www.gsialliance.com/"><img class="btxt" src="/cpse/banner_2.jpg" alt="全球安防联盟为安博会官方唯一合作机构"></a></div>
+      </div>
+      <%#<div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">%>
+        <%#<div class="bimg" style="background:#9c7595;"><a class="links" target="_blank" href="download_app.html"><img class="btxt" src="/cpse/banner_5.jpg" alt="安博会 ２０１5安博会 海报二"></a></div>%>
+        <%#</div>%>
+      <%#<div class="slide autoMaxWidth" style="width: 1659px; left: 0px; top: 0px;">%>
+        <%#<div class="bimg" style="background:#ca4815;"><a class="links" href="/"><img class="btxt" src="/cpse/banner_1.jpg" alt="安博会 ２０１5安博会海报一"></a></div>%>
+        <%#</div>%>
+    </div>
+    <div class="control"> <a href="javascript:" class=""></a><a href="javascript:" class="active"></a> <a href="javascript:" class=""></a> </div>
+  </div>
+</div>
+<script>
+  function lxfEndtime(){
+    $(".lxftime").each(function(){
+      var lxfday=$(this).attr("lxfday");//用来判断是否显示天数的变量
+      var endtime = new Date($(this).attr("endtime")).getTime();//取结束日期(毫秒值)
+      var nowtime = new Date().getTime();        //今天的日期(毫秒值)
+      var youtime = endtime-nowtime;//还有多久(毫秒值)
+      var seconds = youtime/1000;
+      var minutes = Math.floor(seconds/60);
+      var hours = Math.floor(minutes/60);
+      var days = Math.floor(hours/24);
+      var CDay= days ;
+      var CHour= hours % 24;
+      var CMinute= minutes % 60;
+      var CSecond= Math.floor(seconds%60);//"%"是取余运算，可以理解为60进一后取余数，然后只要余数。
+      if(endtime<=nowtime){
+        $(this).html("已过期")//如果结束日期小于当前日期就提示过期啦
+      }else{
+        $(this).html("<span class=\"countdown_time\">距离展会时间：</span><span>"+days+"</span>天<span>"+CHour+"</span>小时<span>"+CMinute+"</span>分<span>"+CSecond+"</span>");          //输出有天数的数据
+      }
+    });
+    setTimeout("lxfEndtime()",1000);
+  };
+  $(function(){
+    lxfEndtime();
+  });
+</script>

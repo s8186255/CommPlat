@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, @user], html: {class: 'form-horizontal', method: :put } ) do |f| %>
+  <%= f.input :password, label: '新密码' %>
+  <%#= f.input :password_confirmation, label: '确认新密码' %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+  <div class="col-sm-12 col-sm-offset-2">
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+      确 认
+    <% end %>
+  </div>
+<% end %>

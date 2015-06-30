@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="icon-user-follow"></i>
+    修改信息类型
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for [:admin,@info_type], :html => {multipart: true,class: "form-horizontal"}  do |f| %>
+      <%= f.input :name, label: "名称" %>
+      <%= f.input :desc, label: "描述" %>
+      <%= f.input :type, label: "类型", collection: Settings.info_type.types,  prompt: "选择你类型"  %>
+      <%= f.input :position, label: "排序" %>
+      <%= f.input :has_child, label: "是否二级分类", as: :boolean, checked_value: true, unchecked_value: false   %>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <%= link_to "返回", admin_info_types_path, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>
