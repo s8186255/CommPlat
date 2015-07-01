@@ -1,0 +1,41 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <a href="/">首页</a><span>/</span><span class="current">提醒页面</span>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div style="width: 50%;margin:0 auto;">
+    <div style="margin-top: 50px; margin-bottom: 50px">
+      <table border="0" cellpadding="5" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td width="72%" height="29" align="left" style="border-bottom: 1px solid #666666;">
+              <span class="genHeaderSmall">
+                <%= notice %>
+                <%= alert %>
+              </span>
+            </td>
+            <td width="9%" rowspan="2" align="left"><img id="loading" style="display:none;" src="images/wait2.gif" alt="" width="16" height="20">
+            </td>
+          </tr>
+          <tr>
+            <td align="left" class="small" style="padding-left: 25px;">
+            </td>
+          </tr>
+          <tr>
+            <td class="small" align="right" nowrap="nowrap">&nbsp;</td>
+            <td class="small" align="right" nowrap="nowrap">
+              <a href="/">返回首页</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
+
+                <%#恭喜您，账号创建成功！请登录电子邮箱邮箱进行进行账号激活%>
+                <%#如未收到邮件点击此处重发激活邮件<a href=""><span style="color:red">重发激活邮件</span></a>%>

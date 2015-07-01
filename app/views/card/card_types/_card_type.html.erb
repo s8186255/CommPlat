@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= card_type.name %>
+  </td>
+  <td>
+    <%= card_type.price %>
+  </td>
+  <td><%= time_f(card_type.created_at) %></td>
+  <td>
+    <%= operation_to @role_actions, '显示', card_card_type_path(card_type),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions, '编辑', edit_card_card_type_path(card_type),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions, '删除',  card_card_type_path(card_type), method: :delete, class: "btn btn-default btn-sm", data: { confirm: "确认要删除吗？"}  %>
+  </td>
+</tr>

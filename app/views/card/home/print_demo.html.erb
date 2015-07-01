@@ -1,0 +1,71 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Tahoma";
+
+    }
+
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    .page {
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 2cm;
+        margin: 1cm auto;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+        padding: 1cm;
+        border: 5px red solid;
+        height: 256mm;
+        outline: 2cm #FFEAEA solid;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    @media print {
+        .page {
+            margin: 0;
+
+            width: 210mm;
+            height: 297mm;
+        }
+    }
+</style>
+<div class="book">
+  <div class="page">
+    <div class="subpage"><%= card @card.card_type.format, @card %></div>
+
+
+  </div>
+  <div class="page">
+    <div class="subpage">Page 2</div>
+  </div>
+
+  <div class="page">
+    <div class="subpage">Page 3</div>
+  </div>
+  <div class="page">
+    <div class="subpage">Page 4</div>
+  </div>
+  <div class="page">
+    <div class="subpage">Page 5</div>
+  </div>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<%= config_card_js @card.card_type %>
+<script>
+    window.print();
+</script>

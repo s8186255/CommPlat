@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <%= payment.organizer.company_name %>
+  </td>
+  <td>
+    <%= payment.sn %>
+  </td>
+  <td>
+    <%= payment.organizer.real_name %>
+  </td>
+  <td>
+    <%= payment.organizer.mobile %>
+  </td>
+  <td>
+    <%= payment.cards.size %>
+  </td>
+  <td>
+    <%= payment.value %>
+  </td>
+  <td><%= time_f(payment.created_at) %></td>
+  <td>
+    <%= link_to '通过',  exhibitor_is_ok_card_check_index_path(id: payment.id), method: :put , class: "btn btn-success btn-sm" %>
+    <%= link_to '不通过',"javascript:void(0)", class: "btn btn-danger btn-sm", data: { toggle: "modal", target: "#exampleModal", whatever: payment.id.to_s  }  %>
+  </td>
+</tr>

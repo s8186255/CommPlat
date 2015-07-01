@@ -1,0 +1,6 @@
+<%=card_style%>
+<div class="book">
+  <%= card(@card)%>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<%= config_card_js @card_type,Settings.applicant_type.all_fields%>

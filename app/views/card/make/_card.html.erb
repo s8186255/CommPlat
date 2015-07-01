@@ -1,0 +1,26 @@
+<tr>
+  <td>
+    <%= card.expo.name %>
+  </td>
+  <td>
+    <%= card.exhibitor.company_name %>
+  </td>
+  <td>
+    <%= card.card_type.name %>
+  </td>
+  <td>
+    <%= card.name %>
+  </td>
+  <td><%= time_f(card.updated_at) %></td>
+  <td>
+    <% if action_name == "index"  %>
+      <a href="/card/make/print?id=<%= card.id %>" class="btn btn-sm btn-default">制卡</a>
+    <% end %>
+    <!--
+    <a href="/card/make/preview?id=<%= card.id %>" class="btn btn-sm btn-default">预览</a>
+    -->
+  </td>
+  <td>
+    <%= Settings.card.status.to_hash.key(card.status) %>
+  </td>
+</tr>

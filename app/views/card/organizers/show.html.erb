@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 主办方显示
+    </div>
+  </div>
+  <ul class="list-group list-group-lg no-bg auto">
+    <li class="list-group-item clearfix">联系人: <%= @organizer.real_name %></li>
+    <li class="list-group-item clearfix">公司名称: <%= @organizer.company_name %></li>
+    <li class="list-group-item clearfix">手机: <%= @organizer.mobile %></li>
+    <li class="list-group-item clearfix">座机: <%= @organizer.phone %></li>
+    <li class="list-group-item clearfix">举办展会: <%= @organizer.expo.name %></li>
+    <li class="list-group-item clearfix">创建时间: <%= @organizer.created_at %></li>
+    <li class="list-group-item clearfix">修改时间: <%= @organizer.updated_at %></li>
+  </ul>
+</div>

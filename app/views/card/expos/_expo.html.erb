@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= expo.name %>
+  </td>
+  <td><%= time_f(expo.created_at) %></td>
+  <td>
+    <%= operation_to @role_actions,'显示', card_expo_path(expo),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions,'编辑', edit_card_expo_path(expo),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions, '删除',  card_expo_path(expo), method: :delete , class: "btn btn-default btn-sm", data: { confirm: "确认要删除吗？"}   %>
+    <%#= link_to '设置默认',  active_card_expo_path(expo), method: :put , class: "btn btn-default btn-sm" %>
+  </td>
+</tr>

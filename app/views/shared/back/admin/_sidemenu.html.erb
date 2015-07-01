@@ -1,0 +1,144 @@
+<aside id="aside" class="app-aside hidden-xs bg-dark">
+  <div class="aside-wrap">
+    <div class="navi-wrap">
+      <!-- nav -->
+      <nav ui-nav="" class="navi clearfix">
+        <ul class="nav">
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>管理后台</span>
+          </li>
+
+          <li class="line dk hidden-folded"></li>
+
+          <% if display_nav? "users" %>
+            <li>
+              <a href="" class="auto">
+                <span class="pull-right text-muted">
+                  <i class="fa fa-fw fa-angle-right text"></i>
+                  <i class="fa fa-fw fa-angle-down text-active"></i>
+                </span>
+                <i class="glyphicon glyphicon-th"></i>
+                <span>用户管理</span>
+              </a>
+              <ul class="nav">
+                <li>
+                  <%= link_to "新增用户", new_admin_user_path %>
+                </li>
+                <li>
+                  <%= link_to "用户列表", admin_users_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="line dk hidden-folded"></li>
+          <% end %>
+
+          <% if display_nav? "roles" %>
+            <li>
+              <a href="" class="auto">
+                <span class="pull-right text-muted">
+                  <i class="fa fa-fw fa-angle-right text"></i>
+                  <i class="fa fa-fw fa-angle-down text-active"></i>
+                </span>
+                <i class="glyphicon glyphicon-th"></i>
+                <span>角色管理</span>
+              </a>
+              <ul class="nav">
+                <li>
+                  <%= link_to "角色列表", admin_roles_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="line dk hidden-folded"></li>
+          <% end %>
+
+          <% if display_nav? "info_types" %>
+            <li>
+              <a href="" class="auto">
+                <span class="pull-right text-muted">
+                  <i class="fa fa-fw fa-angle-right text"></i>
+                  <i class="fa fa-fw fa-angle-down text-active"></i>
+                </span>
+                <i class="glyphicon glyphicon-th"></i>
+                <span>信息类型管理</span>
+              </a>
+              <ul class="nav">
+                <li>
+                  <a href="/admin/info_types/new">
+                    <span>新增信息类型</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/admin/info_types">
+                    <span>信息类型列表</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="line dk hidden-folded"></li>
+          <% end %>
+
+          <li>
+            <a href="" class="auto">
+              <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+              </span>
+              <i class="glyphicon glyphicon-th"></i>
+              <span>信息管理</span>
+            </a>
+            <ul class="nav">
+              <%# if display_nav? "infos" %>
+              <% @menu_info_types.each do |info_type| %>
+                  <% if info_type.type == 0 || info_type.type == 2 %>
+                    <li>
+                      <%= link_to "#{info_type.desc}", admin_info_type_infos_path(info_type) %>
+                    </li>
+                  <% end %>
+              <% end %>
+            </ul>
+          </li>
+          <li class="line dk hidden-folded"></li>
+
+
+          <li>
+            <a href="" class="auto">
+              <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+              </span>
+              <i class="glyphicon glyphicon-th"></i>
+              <span>配置管理</span>
+            </a>
+            <ul class="nav">
+              <%# if display_nav? "infos" %>
+              <% @menu_info_types.each do |info_type| %>
+                <% if info_type.type == 1 %>
+                  <li>
+                    <%= link_to "#{info_type.desc}", admin_info_type_infos_path(info_type) %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </li>
+          <li class="line dk hidden-folded"></li>
+
+
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>帐号管理</span>
+          </li>
+          <li>
+            <%= link_to  edit_user_registration_path do %>
+
+              <i class="icon-user icon text-success-lter"></i>
+              <span>个人资料</span>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+      <!-- nav -->
+
+      <!-- / aside footer -->
+    </div>
+  </div>
+</aside>

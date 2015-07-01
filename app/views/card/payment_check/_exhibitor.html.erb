@@ -1,0 +1,28 @@
+<tr>
+
+  <td>
+    <%= @expo.name %>
+  </td>
+  <td>
+    <%= @expo.organizer.company_name %>
+  </td>
+  <td>
+    <%= exhibitor.company_name %>
+  </td>
+  <% @card_types.each do |card_type| %>
+    <td>
+      <%= exhibitor.cards.where(card_type_id: card_type.id).size %>
+    </td>
+  <% end %>
+  <td>
+    <%= exhibitor.total_price %>
+  </td>
+  <td>
+    <% if params[:check].blank?  %>
+      <%= link_to '已支付',  exhibitor_finance_is_ok_card_payment_check_index_path(id: exhibitor.id, expo_id: params[:expo_id]), method: :put , class: "btn btn-success btn-sm" %>
+      <%#= link_to '不通过',"javascript:void(0)", class: "btn btn-danger btn-sm", data: { toggle: "modal", target: "#exampleModal", whatever: exhibitor.id.to_s  }  %>
+    <% else %>
+      <%= Settings.exhibitor.status.to_hash.key(exhibitor.status) %>
+    <% end %>
+  </td>
+</tr>

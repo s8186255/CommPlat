@@ -1,0 +1,36 @@
+<div  class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 主办方列表
+      <span class="pull-right"> <%= link_to "新增",new_card_organizer_path ,class: "btn btn-sm btn-info"  %></span>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>展会</th>
+          <th>用户名</th>
+          <th>公司</th>
+          <th>联系人</th>
+          <th>手机</th>
+          <th style="width:150px;">创建时间</th>
+          <th style="width:175px;">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @organizers %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <div class="row">
+      <div class="col-sm-6 hidden-xs">
+        <small class="text-muted inline m-t-sm m-b-sm">共<%= @organizers.size %>位普通用户</small>
+      </div>
+      <div class="col-sm-6 text-right text-center-xs">
+        <%= paginate @organizers %>
+      </div>
+    </div>
+  </footer>
+</div>

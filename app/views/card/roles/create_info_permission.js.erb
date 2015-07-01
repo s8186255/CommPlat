@@ -1,0 +1,2 @@
+$('#new_info_tr').remove();
+$("<%= escape_javascript(render @info_permission) %>").prependTo("#info_tbody");

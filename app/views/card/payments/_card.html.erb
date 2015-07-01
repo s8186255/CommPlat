@@ -1,0 +1,27 @@
+<tr>
+  <td>
+    <label class="i-checks m-b-none">
+      <input type="checkbox" name="checkbox1" data-price="<%= card.card_type.price %>" value="<%= card.id %>">
+      <i>
+      </i>
+    </label>
+  </td>
+  <td>
+    <%= card.exhibitor.company_name %>
+  </td>
+  <td>
+    <%= card.sn %>
+  </td>
+  <td>
+    <%= card.card_type.name %>
+  </td>
+  <td>
+    <%= card.card_type.price %>
+  </td>
+  <td>
+    <%= time_f(card.created_at) %>
+  </td>
+  <td>
+    <%= Settings.card.status.to_hash.key(card.status) %>
+  </td>
+</tr>

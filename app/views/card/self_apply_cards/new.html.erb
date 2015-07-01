@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="icon-user-follow"></i>
+      第一步：选择展会
+  </div>
+  <div class="panel-body">
+    <% if @step == "1" %>
+      <form action="" method="get">
+        <input type="hidden" name="step" id="" value="2" />
+        <div class="row" style="padding-top:20px;padding-bottom:20px">
+          <% @expos.each do |expo|  %>
+        <div class="col-sm-3" style="padding-top:5px;padding-bottom:10px">
+            <label class="i-checks">
+              <input type="radio" name="expo_id" value="<%= expo.id %>">
+              <i></i> <%= expo.name %>
+          </label>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-12 text-center">
+        <input type="submit" name="" class="btn btn-info" id="" value="下一步" />
+        <a href="/" class="btn btn-default" id=""  >返 回</a>
+      </div>
+    </form>
+  <% else %>
+    <%= render 'form' %>
+  <% end %>
+</div>
+</div>

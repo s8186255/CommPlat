@@ -1,0 +1,10 @@
+<%= simple_form_for [:card, @expo], :html => { class: "form-horizontal" }  do |f| %>
+  <%= f.input :name, label: "展会名称" %>
+  <%= f.input :desc, label: "展会简介" %>
+  <%= f.association :card_types, as: :check_boxes, label: "卡证类型", collection: CardType.all, label_method: :name, value_method: :id, include_blank: false  %>
+  <div class="text-center">
+    <%= f.button :submit, "提交",  class: "btn btn-info"  %>
+    <%= link_to "返回", card_expos_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+

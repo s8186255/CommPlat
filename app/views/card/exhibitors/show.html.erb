@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 主办方显示
+    </div>
+  </div>
+  <ul class="list-group list-group-lg no-bg auto">
+    <li class="list-group-item clearfix">用户名: <%= @exhibitor.user.username %></li>
+    <li class="list-group-item clearfix">邮箱: <%= @exhibitor.user.email %></li>
+    <li class="list-group-item clearfix">联系人: <%= @exhibitor.real_name %></li>
+    <li class="list-group-item clearfix">公司名称: <%= @exhibitor.company_name %></li>
+    <li class="list-group-item clearfix">手机: <%= @exhibitor.mobile %></li>
+    <li class="list-group-item clearfix">座机: <%= @exhibitor.phone %></li>
+    <li class="list-group-item clearfix">创建时间: <%= @exhibitor.created_at %></li>
+    <li class="list-group-item clearfix">修改时间: <%= @exhibitor.updated_at %></li>
+    <li class="list-group-item clearfix">办卡信息: 
+      <div class="form-group">
+        <div class="col-sm-10">
+          <ul>
+            <% @card_types.each do |card_type| %>
+              <li>
+                <%= card_type.name %> <b class="badge bg-info <%= card_type.id %>_class"><%= @exhibitor.cards.where(card_type_id: card_type.id).size %></b> 张
+              </li>
+              <input type="hidden" name="<%= card_type.id %>" id="<%= card_type.id %>" value="" />
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

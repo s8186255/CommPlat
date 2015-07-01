@@ -1,0 +1,16 @@
+<%= simple_form_for [:card, @organizer], :html => { class: "form-horizontal" }  do |f| %>
+  <%= f.simple_fields_for :user do |fu| %>
+    <%= fu.input :username, label: "用户名" %>
+    <%= fu.input :email, label: "邮箱" %>
+  <% end %>
+  <%= f.input :real_name, label: "联系人" %>
+  <%= f.input :company_name, label: "公司名称" %>
+  <%= f.input :mobile, label: "手机" %>
+  <%= f.input :phone, label: "座机" %>
+  <%= f.association :expo, collection: @expos, label: "会展"  %>
+  <div class="text-center">
+    <%= f.button :submit, "提交",  class: "btn btn-info"  %>
+    <%= link_to "返回", card_organizers_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+

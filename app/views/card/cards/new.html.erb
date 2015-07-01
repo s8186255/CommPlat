@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="icon-user-follow"></i>
+    上报办卡人信息:
+  </div>
+  <div class="panel-body">
+    <% if @step == "1" %>
+      第一步：
+      请选择办卡类型：
+      <form action="" method="get">
+        <input type="hidden" name="step" id="" value="2" />
+        <div class="col-sm-10">
+          <% @card_types.each do |card_type|  %>
+            <label class="i-checks ">
+              <input type="radio" name="card_type_id" value="<%= card_type.id %>">
+              <i></i> <%= card_type.name %>
+          </label>
+        <% end %>
+      </div>
+      <div class="col-sm-12 text-center">
+        <input type="submit" name="" class="btn btn-default" id="" value="提交" />
+      </div>
+    </form>
+  <% else %>
+    <%= render 'form' %>
+  <% end %>
+</div>
+</div>

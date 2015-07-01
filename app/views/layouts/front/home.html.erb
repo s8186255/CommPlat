@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      亚欧安博会
+    </title>
+    <meta name="description" content="描述">
+    <meta name="keywords" content="关键词">
+    <%= javascript_include_tag "front/application" %>
+    <!--[if lte IE 6]>
+    <style type="text/css">
+      html {
+        /*这个可以让IE6下滚动时无抖动*/
+        background: url(about:black) no-repeat fixed
+      }
+      #demo_l{position: absolute;}
+
+
+      /*下面三组规则用于IE6下top计算*/
+      #demo_l {top: expression(offsetParent.scrollTop + 300);}
+    </style>
+
+    <script src="js/DD_belatedPNG_0.0.8a-min.js" language="javascript"></script>
+    <script>
+      DD_belatedPNG.fix('div,li,a,h3,span,img,.png_bg,ul,input,dd,dt,em');
+    </script>
+    <![endif]-->
+    <script type="text/javascript" src="/cpse/jquery.treeview.js"></script>
+    <script type="text/javascript" src="/cpse/jquery.validate.js"></script>
+    <script type="text/javascript" src="/cpse/WdatePicker.js"></script>
+    <link href="/cpse/common.css" type="text/css" rel="stylesheet">
+    <link href="/cpse/style.css" type="text/css" rel="stylesheet">
+    <link href="/cpse/WdatePicker.css" type="text/css" rel="stylesheet" >
+    <%= stylesheet_link_tag "front/application" , media: "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= render partial: "/shared/front/top" %>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+    <%#<a class="fancybox" href="1_b.jpg" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet"><img src="1_s.jpg" alt=""></a>%>
+    <%= render partial: "/shared/front/footer" %>
+    <%#<div id="demo_l"><span><a href="http://www.cpse.com.cn/visitor.php?ac=floorplan&act=visitor&opt=floorplan"><img src="/cpse/zwt.png" onmouseover="this.src=&#39;images/zwt1.png&#39;" onmouseout="this.src=&#39;images/zwt.png&#39;"></a><a href="http://www.cpse.com.cn/famous.php?ac=list&act=famous&opt=2011"><img src="/cpse/czs.png" onmouseover="this.src=&#39;images/czs1.png&#39;" onmouseout="this.src=&#39;images/czs.png&#39;"></a><a href="http://www.cpse.com.cn/visitor.php?ac=enquiry&act=visitor&opt=enquiry"><img src="/cpse/zx.png" onmouseover="this.src=&#39;images/zx1.png&#39;" onmouseout="this.src=&#39;images/zx.png&#39;"></a><a href="http://weibo.com/3058155331" target="_blank"><img src="/cpse/wb.png" onmouseover="this.src=&#39;images/wb1.png&#39;" onmouseout="this.src=&#39;images/wb.png&#39;"></a><a href="http://www.cpse.com.cn/about.php?ac=page&act=download&opt=download"><img src="/cpse/appdown.png" onmouseover="this.src=&#39;images/appdown1.png&#39;" onmouseout="this.src=&#39;images/appdown.png&#39;"></a></span></div>%>
+    <script type="text/javascript">
+      //语言跳转菜单
+    $(document).ready(function(){
+      $(".lang_menu").hover(function(){
+        $(this).find("ul.lang_list").show();//鼠标滑过查找div.lang_menu下面的ul然后显示；
+      },function(){
+        $(this).find("ul.lang_list").hide();//鼠标离开隐藏div.lang_menu下面的ul；
+      });
+
+      //nav
+      $("#navarea li").hover(function () { $(this).find("div:eq(0)").show(); }, function () { $(this).find("div:eq(0)").hide(); }); 
+      $("#navarea li ul li:last-child").css("background","none");
+
+      //滚动
+      $('.scroll_t').click(function(){$('html,body').animate({scrollTop: '0px'}, 500);}); 
+
+      //九宫格图片相册
+      // $("a[rel=img_group]").fancybox({
+      //   'transitionIn'		: 'none',
+      //   'transitionOut'		: 'none',
+      //   'titlePosition' 	: 'over',
+      //   'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+      //     return '<span id="fancybox-title-over">图片 ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+      //   }
+      // });
+
+    })
+
+    //banner图切换
+    $(function(){
+      indexSlides.ini();
+    });
+    var indexSlides={
+      timer: false,
+      total: $('#slide-index .control a').length,
+      current: -1,
+      offScreenLeft: 2000,
+      leaveScreenLeft: 4000,
+      animating: false,
+      obj: $('#slide-index .slide'),
+      styleLength: 3
+    };
+/*
+//左侧菜单
+$(function() {
+$("#tree").treeview({
+collapsed: true,
+animated: "fast",
+control:"#sidetreecontrol",
+prerendered: true,
+persist: "location"
+});
+});
+
+ */
+
+    function ShowUl(ulid){
+      if($("#li_"+ulid).attr("class")=='collapsable'){
+        $("#li_"+ulid).removeClass('collapsable');
+        $("#li_"+ulid).addClass('expandable');
+        $("#ul_"+ulid).hide();
+      }else{
+        $("#li_"+ulid).addClass('collapsable');
+        $("#li_"+ulid).removeClass('expandable');
+        $("#ul_"+ulid).show();
+      }
+    }
+    </script>
+    <script type="text/javascript" src="/cpse/banner.index.js"></script>
+    <style type="text/css" media="all">
+      .fancybox-custom .fancybox-skin {
+        box-shadow: 0 0 50px #222;
+      }
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // Set custom style, close if clicked, change title type and overlay color
+        $(".fancybox").fancybox({
+          wrapCSS    : 'fancybox-custom',
+          closeClick : true,
+
+          openEffect : 'none',
+
+          helpers : {
+            title : {
+              type : 'inside'
+            },
+            overlay : {
+              css : {
+                'background' : 'rgba(238,238,238,0.85)'
+              }
+            }
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>

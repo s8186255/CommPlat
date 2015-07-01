@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= card.expo.name %>
+  </td>
+  <td>
+    <%= card.exhibitor.company_name %>
+  </td>
+  <td>
+    <%= card.sn %>
+  </td>
+  <td>
+    <%= card.card_type.name %>
+  </td>
+  <td><%= time_f(card.created_at) %></td>
+  <td>
+    <a href="/card/check/cards/<%= card.id %>?expo_id=<%= params[:expo_id] %>" class="btn btn-sm btn-default">显示</a>
+  </td>
+  <td>
+    <%= link_to '通过',  card_is_ok_card_check_index_path(id: card.id, expo_id: params[:expo_id]), method: :put , class: "btn btn-success btn-sm" %>
+    <%= link_to '不通过',"javascript:void(0)", class: "btn btn-danger btn-sm", data: { toggle: "modal", target: "#exampleModal", whatever: card.id.to_s  }  %>
+  </td>
+</tr>

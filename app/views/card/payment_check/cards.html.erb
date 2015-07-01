@@ -1,0 +1,32 @@
+<div  class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 申请卡列表
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>卡号</th>
+          <th>卡片类型</th>
+          <th style="width:150px;">创建时间</th>
+          <th>审核</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render collection: @cards, partial: "card"  %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <div class="row">
+      <div class="col-sm-6 hidden-xs">
+        <small class="text-muted inline m-t-sm m-b-sm">共<%= @cards.size %>位</small>
+      </div>
+      <div class="col-sm-6 text-right text-center-xs">
+        <%= paginate @cards %>
+      </div>
+    </div>
+  </footer>
+</div>

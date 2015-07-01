@@ -1,0 +1,15 @@
+<div  class="panel panel-default">
+  <div class="panel-heading">
+    第一步：选择卡证类型
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for @card_type,:url=> new_step_two_card_card_types_path, :html => {class: "form-horizontal", multipart: true} do |f| %>
+
+      <%= select_input_field 'applicant_type','类型',@applicant_type_opts%>
+      <div class="text-center">
+        <%= f.button :submit, '下一步', class: "btn btn-info"%>
+        <%#= link_to "返回", card_expos_path, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>

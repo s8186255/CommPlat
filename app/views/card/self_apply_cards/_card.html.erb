@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <%= card.card_type.name %>
+  </td>
+  <td>
+    <%= card.name ? "已上报" : "未上报" %>
+  </td>
+  <td><%= time_f(card.updated_at) %></td>
+  <td>
+    <%= operation_to @role_actions,'显示', card_card_path(card),  class: "btn btn-default btn-sm"  %>
+    <% if params[:commit] == "ok"  %>
+    <% else %>
+      <% unless card.name   %>
+        <%= operation_to @role_actions,'上报信息', edit_card_card_path(card),  class: "btn btn-default btn-sm"  %>
+      <% end %>
+      <%= link_to '提交', apply_card_apply_path(card), method: :put,  class: "btn btn-default btn-sm"  %>
+    <% end %>
+  </td>
+  <td>
+    <%= Settings.card.status.to_hash.key(card.status) %>
+    <% if card.status == -1  %>
+      <%= link_to '[查看原因]',"javascript:void(0)",  data: { toggle: "modal", target: "#exampleModal", whatever: card.message  }  %>
+    <% end %>
+  </td>
+</tr>

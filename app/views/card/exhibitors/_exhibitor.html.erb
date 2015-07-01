@@ -1,0 +1,28 @@
+<tr <%= exhibitor.status == 1 ? "class=success" : "" %>>
+  <td>
+    <%= exhibitor.expo.name %>
+  </td>
+  <td>
+    <%= exhibitor.user.username unless exhibitor.user.nil?%>
+  </td>
+  <td>
+    <%= exhibitor.company_name %>
+  </td>
+  <td>
+    <%= exhibitor.real_name %>
+  </td>
+  <td>
+    <%= exhibitor.mobile %>
+  </td>
+  <td><%= time_f(exhibitor.created_at) %></td>
+  <td>
+    <%= operation_to @role_actions,'显示', card_exhibitor_path(exhibitor),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions,'编辑', edit_card_exhibitor_path(exhibitor),  class: "btn btn-default btn-sm"  %>
+    <%= operation_to @role_actions, '删除',  card_exhibitor_path(exhibitor), method: :delete , class: "btn btn-default btn-sm", data: { confirm: "确认要删除吗？"}   %>
+  </td>
+  <td><%= Settings.exhibitor.status.to_hash.key(exhibitor.status) %>
+  <% if exhibitor.status == -1  %>
+    <%= link_to '[原因]',"javascript:void(0)", class: "text-danger", data: { toggle: "modal", target: "#exampleModal", whatever: exhibitor.error_msg  }  %>
+  <% end %>
+</td>
+</tr>

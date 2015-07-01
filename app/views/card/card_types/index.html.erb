@@ -1,0 +1,33 @@
+<div  class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 卡片类型列表
+      <span class="pull-right"> <%= link_to "新增",new_card_card_type_path ,class: "btn btn-sm btn-info"  %></span>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>价格</th>
+          <th style="width:150px;">创建时间</th>
+          <th style="width:175px;">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @card_types %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <div class="row">
+      <div class="col-sm-6 hidden-xs">
+        <small class="text-muted inline m-t-sm m-b-sm">共<%= @card_types.size %>个</small>
+      </div>
+      <div class="col-sm-6 text-right text-center-xs">
+        <%= paginate @card_types %>
+      </div>
+    </div>
+  </footer>
+</div>

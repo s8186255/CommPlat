@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 卡片类型显示
+    </div>
+  </div>
+  <ul class="list-group list-group-lg no-bg auto">
+    <li class="list-group-item clearfix">卡片名称: <%= @card_type.name %></li>
+    <li class="list-group-item clearfix">卡片单价: <%= @card_type.price %></li>
+    <li class="list-group-item clearfix">卡片底图: <%=image_tag @card_type.image %></li>
+    <li class="list-group-item clearfix">创建时间: <%= @card_type.created_at %></li>
+    <li class="list-group-item clearfix">修改时间: <%= @card_type.updated_at %></li>
+  </ul>
+  <%= edit_card_type @applicant_type,@card_type %>
+</div>
+<%= config_card_js @card_type,Settings.applicant_type.all_fields%>

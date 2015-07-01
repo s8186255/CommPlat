@@ -1,0 +1,16 @@
+<%= simple_form_for :card do |f| %>
+  <% @card_fields.each do |field| %>
+    <%= card_input_field field[:name],field[:desc],'',field[:type] %>
+    <%=dash_line%>
+  <% end %>
+
+
+  <div class="text-center">
+    <%= f.button :submit, "提交",  class: "btn btn-info"  %>
+    <%#= link_to "返回", card_expos_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<%#= config_card_js @card_type%>
+
+

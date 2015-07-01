@@ -1,0 +1,39 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <a href="/">首页</a><span>/</span><span class="current">忘记密码</span>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft" >
+
+      <div class="left cont_left">
+        <ul class="treeview" id="tree">
+          <li class="collapsable"> <a href="" >找回密码<img src="/images/icon_arrow.png"></a></li>
+          <li class="expandable"> <a href="" >重发激活邮件<img src="/images/icon_arrow.png"></a></li>
+        </ul>
+      </div>
+
+      <div class="right cont_right" style="MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
+        <span>请重置您的密码</span>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+
+          <%= f.input :reset_password_token, as: :hidden %>
+
+          <div style="margin: 10px;">
+            <%= f.input :password, label: "新密码", required: true, autofocus: true %>
+          </div>
+          <div style="margin: 10px;">
+            <%= f.input :password_confirmation, label: "确认你的密码", required: true %>
+          </div>
+
+          <div style="margin: 10px;">
+            <%= f.button :submit, "密码修改" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

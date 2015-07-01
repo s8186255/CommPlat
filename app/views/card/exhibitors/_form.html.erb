@@ -1,0 +1,77 @@
+<%= simple_form_for [:card, @exhibitor], :html => { class: "form-horizontal" }  do |f| %>
+  <%= f.simple_fields_for :user do |fu| %>
+    <%= fu.input :username, label: "用户名" %>
+    <%= fu.input :email, label: "邮箱" %>
+  <% end %>
+  <%= f.input :real_name, label: "联系人" %>
+  <%= f.input :company_name, label: "公司名称" %>
+  <%= f.input :mobile, label: "手机" %>
+  <%= f.input :phone, label: "座机" %>
+  <div class="form-group">
+    <label class="tel optional col-sm-2 control-label" for="exhibitor_phone">
+      办卡张数
+    </label>
+    <div class="col-sm-3">
+      <select class="form-control" id="card_types_select">
+        <% @card_types.each do |card_type| %>
+          <option data-price="<%= card_type.price %>" value="<%= card_type.id %>"><%= card_type.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <input class="string tel optional form-control" type="tel" name="" id="num">
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-default" type="button" onclick="addcard()">确定</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="tel optional col-sm-2 control-label" for="exhibitor_phone">
+      办卡信息
+    </label>
+    <div class="col-sm-10">
+      <ul>
+        <% @card_types.each do |card_type| %>
+          <li>
+            <%= card_type.name %> <b class="badge bg-info <%= card_type.id %>_class">0</b> 张 , 单价：<%= card_type.price %>元
+          </li>
+          <input class="tp" type="hidden" data-price="0"  name="<%= card_type.id %>" id="<%= card_type.id %>" value="" />
+        <% end %>
+      </ul>
+    </div>
+    <label class="tel optional col-sm-2 control-label" for="exhibitor_phone">
+      卡证费用合计
+    </label>
+    <div class="col-sm-10">
+      <span id="price">0</span>元
+    </div>
+
+  </div>
+
+  <div class="text-center">
+    <%= f.button :submit, "提交",  class: "btn btn-info"  %>
+    <%= link_to "返回", card_exhibitors_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  function addcard() {
+    var num = parseInt($("#num").val());
+    var card_type_id = $("#card_types_select").val();
+    var price = parseInt($("#card_types_select option:selected").data("price"));
+    console.log(num + " " + card_type_id);
+    $("." + card_type_id + "_class").html(num);
+    $("#" + card_type_id).val(num);
+    var total = num * price;
+    $("#" + card_type_id).data("price", total);
+    update_price();
+  }
+  function update_price() {
+    var total = 0;
+    $(".tp").each(function(){
+      total += parseInt($(this).data("price"));
+    });
+    $("#price").html(total);
+  }
+</script>
+

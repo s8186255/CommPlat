@@ -1,0 +1,26 @@
+<tr>
+  <td>
+    <%= self_apply_card.expo.name %>
+  </td>
+  <td>
+    <%= self_apply_card.sn %>
+  </td>
+  <td>
+    <%= self_apply_card.name %>
+  </td>
+  <td>
+    <%= self_apply_card.work_unit %>
+  </td>
+  <td><%= time_f(self_apply_card.updated_at) %></td>
+  <td>
+    <% if action_name == "self_index"  %>
+      <a href="/card/make/self_print?id=<%= self_apply_card.id %>" class="btn btn-sm btn-default">制卡</a>
+    <% end %>
+    <!--
+    <a href="/card/make/preview?id=<%= self_apply_card.id %>" class="btn btn-sm btn-default">预览</a>
+    -->
+  </td>
+  <td>
+    <%= Settings.card.status.to_hash.key(self_apply_card.status) %>
+  </td>
+</tr>

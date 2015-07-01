@@ -1,0 +1,26 @@
+<%= simple_form_for(@demo_book) do |f| %>
+  <% if @demo_book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@demo_book.errors.count, "error") %> prohibited this demo_book from being saved:</h2>
+
+      <ul>
+      <% @demo_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :name, label: 'name' %>
+  </div>
+  <div class="field">
+    <%= f.input :author, label: 'author' ,collection: ['男','女']%>
+  </div>
+  <div class="field">
+    <%= f.input :pagecount, label: 'pagecount' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

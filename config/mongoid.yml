@@ -1,0 +1,33 @@
+development:
+  sessions:
+    default:
+      database: CommPlat
+      # Provides the hosts the default session can connect to. Must be an array
+      # of host:port pairs. (required)
+      hosts:
+        - 112.124.57.143:27017
+      username: leebo
+      password: lee123456
+  options:
+    raise_not_found_error: false
+
+test:
+  sessions:
+    default:
+      database: easysite_dev
+      hosts:
+        - 112.124.57.143:27017
+      username: leebo
+      password: lee123456
+  options:
+    raise_not_found_error: false
+
+
+production:
+  sessions:
+    default:
+      database: makecard_dev
+      hosts:
+        - 127.0.0.1
+  options:
+    raise_not_found_error: false

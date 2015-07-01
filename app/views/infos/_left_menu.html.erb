@@ -1,0 +1,9 @@
+<ul class="treeview" id="tree">
+  <% if @info_type.has_child  %>
+    <% @infos.each do |info| %>
+      <li class="<%= @info.id == info.id ? "collapsable" : "expandable" %>"> <a href="<%= "/#{@info_type.name}/infos/#{info.id}" %>"><%= info.title %><img src="/images/icon_arrow.png"></a></li>
+    <% end %>
+  <% else %>
+    <li class="collapsable"> <a href="/<%= @type %>"><%= @info_type.desc %><img src="/images/icon_arrow.png"></a></li>
+  <% end %>
+</ul>

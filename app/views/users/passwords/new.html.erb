@@ -1,0 +1,39 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <a href="/">首页</a><span>/</span><span class="current">忘记密码</span>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft" >
+
+      <div class="left cont_left">
+        <ul class="treeview" id="tree">
+          <li class="collapsable"> <a href="#" >忘记密码<img src="/images/icon_arrow.png"></a></li>
+          <li class="expandable"> <a href="/users/confirmation/new" >重发激活邮件<img src="/images/icon_arrow.png"></a></li>
+        </ul>
+      </div>
+
+      <div class="right cont_right">
+
+
+
+        <div class="right_center" style="text-align:center; padding-top:50px;  ">
+          <span>请填写邮箱地址点击找回密码，查收邮件后点击里面的修改密码，设置成新密码</span>
+          <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <div style="MARGIN: 20px">
+              <%= f.input :email, label: false, placeholder: "邮箱", required: true, autofocus: true %>
+            </div>
+
+            <div style="MARGIN:20px">
+              <%= f.button :submit, "忘记密码" %>
+            </div>
+          <% end %>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+</div>

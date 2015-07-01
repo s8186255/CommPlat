@@ -1,0 +1,59 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 详细资料
+    </div>
+  </div>
+  <ul class="list-group list-group-lg no-bg auto">
+    <li class="list-group-item clearfix">卡号: <%= @self_apply_card.sn %></li>
+    <li class="list-group-item clearfix">卡片类型: <%= @self_apply_card.card_type.name %></li>
+    <% @card_fields.each do |field| %>
+      <li class="list-group-item clearfix"><%= field[:title] %>:
+        <% if field[:type] == "File"  %>
+          <img src="/uploads/images/<%= @self_apply_card[field[:name]] %>" alt="" />
+        <% else %>
+          <%= @self_apply_card[field[:name]] %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="panel-footer text-center">
+    <%= link_to '通过',  self_apply_card_is_ok_card_check_index_path(id: @self_apply_card.id, expo_id: params[:expo_id]), method: :put , class: "btn btn-success btn-sm" %>
+    <%= link_to '不通过',"javascript:void(0)", class: "btn btn-danger btn-sm", data: { toggle: "modal", target: "#exampleModal", whatever: @self_apply_card.id.to_s  }  %>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="/" method="get" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">审核不通过</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="message-text" class="control-label">原因:</label>
+            <input type="hidden" name="id" id="" value="" />
+            <textarea class="form-control" id="message-text" name="msg"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var form = $('.modal-content form');
+    form.attr("action", "/card/check/self_apply_card_is_not_ok?expo_id=<%= params[:expo_id] %>");
+    $('.modal-body input').val(recipient);
+  })
+</script>

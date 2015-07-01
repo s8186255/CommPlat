@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing User Reports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_reports.each do |user_report| %>
+      <tr>
+        <td><%= link_to 'Show', user_report %></td>
+        <td><%= link_to 'Edit', edit_user_report_path(user_report) %></td>
+        <td><%= link_to 'Destroy', user_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Report', new_user_report_path %>

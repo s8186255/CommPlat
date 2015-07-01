@@ -1,0 +1,63 @@
+<div  class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 申请卡列表
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>卡证类型</th>
+          <th>信息状态</th>
+          <th style="width:150px;">创建时间</th>
+          <th>操作</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render collection: @cards, partial: "card"  %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <div class="row">
+      <div class="col-sm-6 hidden-xs">
+        <small class="text-muted inline m-t-sm m-b-sm">共<%= @cards.size %>位</small>
+      </div>
+      <div class="col-sm-6 text-right text-center-xs">
+        <%= paginate @cards %>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">审核不通过</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="message-text" class="control-label">原因:</label>
+            <input type="hidden" name="id" id="" value="" />
+            <textarea class="form-control" id="message-text" name="msg" value="test"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    $('#message-text').val(recipient);
+  })
+</script>

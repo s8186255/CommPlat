@@ -1,0 +1,41 @@
+<div id="content_pg">
+  <div class="content_pg_top">
+    <div class="left nav_links">
+      <%= render "top_menu" %>
+    </div>
+    <div class="right"><a href="javascript:" class="page_print" onclick="javascript:window.print();" title="打印"></a><a class="mailto" href="mailto:" title="发送邮件"></a></div>
+  </div>
+  <div class="content_pg_ct">
+    <div class="content_pg_ft">
+
+      <div class="left cont_left">
+        <%= render "left_menu" %>
+      </div>
+
+      <div class="right cont_right">
+        <% if @type.include?("img")  %>
+          <%= render(partial: "info_img", collection: @infos ) || raw("没有任何信息")  %>
+        <% elsif @info_type.has_child %>
+          <h1 style="text-align:center"><%= @info.title %></h1>
+          <hr>
+          <% @info.item_types.each_with_index do |item_type,index| %>
+            <% if item_type.name == "内容"  %>
+              <%= raw @info.items[index].value %>
+              <% break %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <ul class="news_list">
+            <%= render(@infos) || raw('没有任何信息') %>
+          </ul>
+          <div class="pages">
+            <%= paginate @infos, :views_prefix => 'front'  %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

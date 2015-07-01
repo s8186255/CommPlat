@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row m-l-xs m-r-xs">
+      <i class="icon-users"></i> 展会显示
+    </div>
+  </div>
+  <ul class="list-group list-group-lg no-bg auto">
+    <li class="list-group-item clearfix">会展名称: <%= @expo.name %></li>
+    <li class="list-group-item clearfix">会展简介: <%= @expo.desc %></li>
+    <li class="list-group-item clearfix">会展卡片类型: <%= @expo.card_types.map{|ct| ct.name}.join(",") %></li>
+    <li class="list-group-item clearfix">创建时间: <%= @expo.created_at %></li>
+    <li class="list-group-item clearfix">修改时间: <%= @expo.updated_at %></li>
+  </ul>
+</div>

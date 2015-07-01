@@ -1,0 +1,8 @@
+<li>
+  <div class="<%= info.top ? 'is_top' : '' %>">
+    <% if is_new? info  %>
+      <img src="/images/new.png" alt="" />
+    <% end %>
+    <a href="/<%= info.info_type.name %>/infos/<%= info.id %>"><span class="time"><%= date_f(info.created_at) %></span><%= info.title %></a>
+  </div>
+</li>

@@ -1,0 +1,23 @@
+<tr>
+
+  <td>
+    <%= exhibitor.user.username %>
+  </td>
+  <td>
+    <%= exhibitor.company_name %>
+  </td>
+  <td>
+    <%= exhibitor.real_name %>
+  </td>
+  <td>
+    <%= exhibitor.mobile %>
+  </td>
+  <td><%= time_f(exhibitor.created_at) %></td>
+  <td>
+    <a href="/card/check/exhibitors/<%= exhibitor.id %>" class="btn btn-sm btn-default">显示</a>
+  </td>
+  <td>
+    <%= link_to '通过',  exhibitor_is_ok_card_check_index_path(id: exhibitor.id), method: :put , class: "btn btn-success btn-sm" %>
+    <%= link_to '不通过',"javascript:void(0)", class: "btn btn-danger btn-sm", data: { toggle: "modal", target: "#exampleModal", whatever: exhibitor.id.to_s  }  %>
+  </td>
+</tr>

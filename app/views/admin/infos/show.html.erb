@@ -1,0 +1,22 @@
+<div class="panel">
+  <div class="wrapper-lg">
+    <h2 class="m-t-none text-center"><%= @info.title %></h2>
+    <div class="line line-lg b-b b-light"></div>
+    <% @items.each do |item| %>
+      <% if [Settings.content_type.text, Settings.content_type.rich_text].member? item.item_type.content_type %>
+        <%= raw item.value %>
+      <% elsif item.item_type.content_type == Settings.content_type.video %>
+        <video src="<%= item.attachments.first.asset_url %>"></video>
+      <% elsif item.item_type.content_type == Settings.content_type.image %>
+        <%= image_tag item.attachments.first.asset_url, class: "img-responsive" %>
+      <% elsif item.item_type.content_type ==Settings.content_type.attachment %>
+        <a href="<%= item.attachments.first.asset_url %>">下载</a>
+      <% end %>
+    <% end %>
+    <div class="line line-lg b-b b-light"></div>
+    <div class="text-muted">
+      <i class="fa fa-user text-muted"></i> <%= @info.user.username %>
+    <i class="fa fa-clock-o text-muted"></i> <%= @info.updated_at %>
+</div>
+  </div>
+</div>
