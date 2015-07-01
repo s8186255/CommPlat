@@ -1,1 +1,0 @@
-CNZZ_AD_RSLOT({"275264":{"aid":"204578","af":1,"stype":"1","_w":"-1","_h":"-1","cc":"9b5d567e0bb28713b1080bfce64dc798","ht":"http:\/\/am1.adm.cnzz.net","ip":"124.117.251.202","transfer":"false","_html":{"id":"238948","type":"rich","content":"<script src=\"http:\/\/u.1133.cc\/t\/?pid=215207&show_t=2\" type=\"text\/Javascript\"><\/script>","originaltype":"rich","im":false}}});
