@@ -10,6 +10,9 @@ class Api::BooksController < ApiController
     timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     access_token = '01b8d3d6d16a44af834f1a9f8b1ae28d'
     token_secret = '9e2de3b33c4021d77913faa89a0f92e4'
+    access_token1 = '16f2bc574b4e428785409dfe2db9e89d'
+    token_secret1 = 'e53cb8b5ccaab73763d774f50a0fbec9'
+
     sign= Digest::MD5.digest(access_token + timestamp + token_secret).unpack("H*")[0]
     str_params1 = %Q{
     access_token=938d2bdcb0f750ab8720901b66df67e31393902726651&
@@ -25,7 +28,7 @@ class Api::BooksController < ApiController
         access_token: access_token,
         timestamp: timestamp,
         sign: Digest::MD5.digest(access_token + timestamp + token_secret).unpack("H*")[0],
-        req_body: "<vDisplayNbr>09913676865</vDisplayNbr><vCallerNbr>09913676865</vCallerNbr><vCalledNbr>15309910500</vCalledNbr><vRecord>0</vRecord>"
+        req_body: "<vDisplayNbr>09913676865</vDisplayNbr><vCallerNbr>15309910500</vCallerNbr><vCalledNbr>09913676865</vCalledNbr><vRecord>0</vRecord>"
 
     }
     #render json: @api_books
