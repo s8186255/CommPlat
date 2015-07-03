@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include UserLogin
   protect_from_forgery with: :exception
 
   #登陆成功后 跳转地址
@@ -39,23 +40,6 @@ protected
     session[:step]
   end
 
-  def login?
-    !session[:user_id].nil?
-  end
 
-  def authenticate_member!
-     unless login?
-       redirect_to 'login'
-     end
-  end
-
-  def authenticate opts
-    member = Member.authenticate opts
-    if member.nil?
-      "not ok"
-    else
-      session[user_id] = member.id
-    end
-  end
 
 end

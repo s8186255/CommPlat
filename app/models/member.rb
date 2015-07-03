@@ -48,13 +48,20 @@ class Member
   class<< self
     def authenticate opts={}
       if opts[:name]
-        return self.find_by(name:opts[:name]).authenticate(opts[:password])
+        member = self.find_by(name: opts[:name])
+        member.nil? ? false : member.authenticate(opts[:password])
+        #return member || member.authenticate(opts[:password])
       elsif opts[:email]
-        return self.find_by(email:opts[:email]).authenticate(opts[:password])
+        member = self.find_by(email: opts[:email])
+        member.nil? ? false : member.authenticate(opts[:password])
+      elsif opts[:phone]
+        member = self.find_by(phone: opts[:phone])
+        member.nil? ? false : member.authenticate(opts[:password])
       elsif opts[:token]
-        return find_by(token: opts[:token])
+        member = find_by(token: opts[:token])
+        member.nil? ? false : member
       else
-        return nil
+        return false
       end
     end
   end
