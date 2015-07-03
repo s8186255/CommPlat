@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
 
-  namespace :api do resources :books, except: [:new, :edit] end
+  resources :members do
+    collection do
+      get 'login'
+      post 'login_ok'
+    end
+
+  end
+  namespace :api do
+    resources :books, except: [:new, :edit]
+  end
   namespace :demo do
     resources :books
   end
@@ -32,11 +41,11 @@ Rails.application.routes.draw do
   get 'error' => 'flash#error'
 
   devise_for :users, controllers: {
-    registrations: "users/registrations",
-    confirmations: "users/confirmations",
-    passwords: "users/passwords",
-    sessions: "users/sessions"
-  }
+                       registrations: "users/registrations",
+                       confirmations: "users/confirmations",
+                       passwords: "users/passwords",
+                       sessions: "users/sessions"
+                   }
 
   devise_scope :user do
     root :to => 'devise/sessions#new'
@@ -55,7 +64,7 @@ Rails.application.routes.draw do
 
   namespace :attachment do
     post "/upload" => "assets#create"
-    get  "/filemanager" => "assets#list"
+    get "/filemanager" => "assets#list"
   end
 
   get 'search', to: "search#index"
@@ -71,7 +80,7 @@ Rails.application.routes.draw do
     end
     resources :self_apply_cards do
     end
-    resources :make , only: :index do
+    resources :make, only: :index do
       collection do
         get 'preview'
         get 'print'
@@ -123,7 +132,7 @@ Rails.application.routes.draw do
     resources :exhibitors
     resources :cards
     resources :expos do
-      collection {get 'config_status'}
+      collection { get 'config_status' }
       member do
         put 'active'
       end

@@ -39,4 +39,23 @@ protected
     session[:step]
   end
 
+  def login?
+    !session[:user_id].nil?
+  end
+
+  def authenticate_member!
+     unless login?
+       redirect_to 'login'
+     end
+  end
+
+  def authenticate opts
+    member = Member.authenticate opts
+    if member.nil?
+      "not ok"
+    else
+      session[user_id] = member.id
+    end
+  end
+
 end
