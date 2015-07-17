@@ -164,4 +164,19 @@ Rails.application.routes.draw do
       get 'step_two'
     end
   end
+
+
+  namespace :mod do
+    namespace :comm do
+      resources :api do
+        collection do
+          get 'meeting'
+          get 'record'
+          get 'message'
+        end
+      end
+    end
+  end
+
+
 end
