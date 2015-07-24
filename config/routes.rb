@@ -168,11 +168,17 @@ Rails.application.routes.draw do
 
   namespace :mod do
     namespace :comm do
-      resources :api do
+      resources :functions do
         collection do
           get 'meeting'
           get 'record'
           get 'message'
+        end
+      end
+      resources :groups do
+        collection do
+          get 'add'
+          get 'remove'
         end
       end
     end

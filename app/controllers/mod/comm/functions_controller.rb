@@ -1,4 +1,4 @@
-class Mod::Comm::FunctionsController < Mod::Comm::BaseController
+class Mod::Comm::FunctionsController < ApplicationController
   #before_action :set_mod_comm_api, only: [:show, :update, :destroy]
 
   def meeting
@@ -28,8 +28,13 @@ class Mod::Comm::FunctionsController < Mod::Comm::BaseController
     #参数说明
 
   end
+  #联系人组
+  def contact_groups
+    @groups = Mod::Comm::Group.all
+  end
   #生成联系人组；
   def create_contact_group
+
 
   end
 
