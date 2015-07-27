@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module UserLogin
+module MemberLogin
   extend ActiveSupport::Concern
   included do
 
@@ -15,6 +15,21 @@ module UserLogin
       end
     end
 
+    def authenticate_by_name
+    end
+    def authenticate_by_email
+
+    end
+def authenticate_by_token
+
+end
+
+
+    def current_member
+      Member.find_by id: session[:user_id]
+    end
+
+    private
     def authenticate opts
       member = Member.authenticate opts
       if member.nil?
