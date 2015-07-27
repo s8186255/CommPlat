@@ -8,11 +8,14 @@ class Mod::Comm::GroupsController < ApplicationController
 
   #新建一个组
   def create
-
+#params
+    #name
+    #phones
+    Group.create name: params[:name],phones: params[:phones],user_id:current_user.id
   end
   #删除一个组
   def destroy
-
+Group.find_by(id:params[:id]).destroy
   end
 
   #添加一个号码到组中；
