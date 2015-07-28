@@ -11,7 +11,7 @@ module MemberLogin
 
     def authenticate_member!
       unless login?
-        redirect_to('login') || render(json:{login: 'false'})
+        render json:{login: false}
       else
         current_member
       end

@@ -1,7 +1,7 @@
-class Mod::Comm::GroupsController < ApplicationController
+class Mod::Comm::GroupsController < ApiController
   #before_action :set_mod_comm_api, only: [:show, :update, :destroy]
   before_filter :authenticate_member!
-  skip_before_filter :verify_authenticity_token
+
   #组的列表；
   def index
     puts params[:phones]
