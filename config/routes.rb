@@ -2,9 +2,7 @@ Rails.application.routes.draw do
 
   resources :members do
     collection do
-      get 'login'
-      post 'login_ok'
-      get 'failed'
+      post 'login'
     end
 
   end

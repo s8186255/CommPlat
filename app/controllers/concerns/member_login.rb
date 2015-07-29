@@ -7,11 +7,12 @@ module MemberLogin
     protected
     def login?
       token=params[:token]
+      puts token+"--hello client token"
       if token.nil?
         return false
       else
-        current_member = Member.find_by token: token
-        if current_member.nil?
+        current_member = Member.authenticate token: token
+        if current_member
           return false
         else
           return true
@@ -20,14 +21,13 @@ module MemberLogin
     end
 
     def authenticate_member!
+      puts login?
       unless login?
-        render json:{login: false}
+        render json: {login: false}
       else
-        render json:{login: true}
+        render json: {login: true}
       end
     end
-
-
 
 
     def current_member
@@ -37,11 +37,12 @@ module MemberLogin
 
 
     def authenticate opts
+      #返回false或者member
       member = Member.authenticate opts
-      if member.nil?
-        redirect_to failed_members_url
+      if member
+        render json: {token: member.token}
       else
-        session[:member_id] = member.id
+        render json: {token: false}
       end
     end
   end
