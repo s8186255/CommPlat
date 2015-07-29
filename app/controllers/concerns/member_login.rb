@@ -6,14 +6,24 @@ module MemberLogin
 
     protected
     def login?
-      !session[:member_id].nil?
+      token=params[:token]
+      if token.nil?
+        return false
+      else
+        current_member = Member.find_by token: token
+        if current_member.nil?
+          return false
+        else
+          return true
+        end
+      end
     end
 
     def authenticate_member!
       unless login?
         render json:{login: false}
       else
-        current_member
+        render json:{login: true}
       end
     end
 
@@ -21,7 +31,8 @@ module MemberLogin
 
 
     def current_member
-      Member.find_by id: session[:member_id]
+      Member.find_by token: params[:token]
+      #Member.find_by id: session[:member_id]
     end
 
 
