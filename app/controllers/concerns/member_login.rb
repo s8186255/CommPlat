@@ -13,9 +13,9 @@ module MemberLogin
       else
         current_member = Member.authenticate token: token
         if current_member
-          return false
-        else
           return true
+        else
+          return false
         end
       end
     end
