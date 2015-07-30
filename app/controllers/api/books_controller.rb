@@ -4,7 +4,7 @@ class Api::BooksController < ApiController
   # GET /api/books
   # GET /api/books.json
   def index
-    @api_books = Api::Book.all
+    #@api_books = Api::Book.all
     url1='http://api.open189.net:10035/xj/as/dial'
     url2='http://api.open189.net:10035/xj/as/meetstart?'
     timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S")
@@ -29,12 +29,12 @@ class Api::BooksController < ApiController
         timestamp: timestamp,
         sign: Digest::MD5.digest(access_token + timestamp + token_secret).unpack("H*")[0],
         req_body: "<vDisplayNbr>09913676865</vDisplayNbr><vCallerNbr>15309910500</vCallerNbr><vCalledNbr>09913676865</vCalledNbr><vRecord>0</vRecord>"
-
     }
     #render json: @api_books
-    RestClient.get url2+str_params2
+    #RestClient.get url2+str_params2
     RestClient.post url1,json_params
     #Net::HTTP.post_form URI.parse(url1),json_params
+    render json: {success: 'ok'}
   end
 
   # GET /api/books/1
