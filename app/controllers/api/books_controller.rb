@@ -1,40 +1,13 @@
+# encoding: utf-8
 class Api::BooksController < ApiController
   before_action :set_api_book, only: [:show, :update, :destroy]
 
   # GET /api/books
   # GET /api/books.json
   def index
-    #@api_books = Api::Book.all
-    url1='http://api.open189.net:10035/xj/as/dial'
-    url2='http://api.open189.net:10035/xj/as/meetstart?'
-    timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-    access_token = '01b8d3d6d16a44af834f1a9f8b1ae28d'
-    token_secret = '9e2de3b33c4021d77913faa89a0f92e4'
-    access_token1 = '16f2bc574b4e428785409dfe2db9e89d'
-    token_secret1 = 'e53cb8b5ccaab73763d774f50a0fbec9'
-
-    sign= Digest::MD5.digest(access_token + timestamp + token_secret).unpack("H*")[0]
-    str_params1 = %Q{
-    access_token=938d2bdcb0f750ab8720901b66df67e31393902726651&
-    timestamp=#{timestamp}&auth_token=&
-    format=JSON&state=&sign=#{sign}&
-    req_body=<vChargeNbr>09913676865</vChargeNbr><vDisplayNbr>09913676865</vDisplayNbr><vCallerNbr>09913676865</vCallerNbr><vCalledNbr>15309910500</vCalledNbr>
-    }
-
-    str_params2 = "access_token=#{access_token}&timestamp=#{timestamp}&auth_token=&format=JSON&state=&sign=#{sign}&req_body=<vDisplayNbr>09913676865</vDisplayNbr><vAdminNbr>09913676865</vAdminNbr><vMemberNbr>15309910500|18099209001</vMemberNbr>"
-
-
-    json_params = {
-        access_token: access_token,
-        timestamp: timestamp,
-        sign: Digest::MD5.digest(access_token + timestamp + token_secret).unpack("H*")[0],
-        req_body: "<vDisplayNbr>09913676865</vDisplayNbr><vCallerNbr>15309910500</vCallerNbr><vCalledNbr>09913676865</vCalledNbr><vRecord>0</vRecord>"
-    }
-    #render json: @api_books
-    #RestClient.get url2+str_params2
-    RestClient.post url1,json_params
-    #Net::HTTP.post_form URI.parse(url1),json_params
-    render json: {success: 'ok'}
+    ch = CommHandler.new(url: Settings.comm.group_call.url,req_body: "<vDisplayNbr>09913676865</vDisplayNbr><vAdminNbr>15309910500</vAdminNbr><vMemberNbr>09916697159|18690822170</vMemberNbr>")
+    response=ch.group_call
+    render json: {success: response.force_encoding('UTF-8')}
   end
 
   # GET /api/books/1

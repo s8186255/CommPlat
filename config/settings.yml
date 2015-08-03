@@ -1,9 +1,14 @@
 #encoding: utf-8
 #saq定义的常量
 #返现卡种类；
-mass_sms:
-  url: ''
-group_record:
-  url: 'http://api.open189.net:10035/xj/as/voicenotice'
-group_call:
-  url: 'http://api.open189.net:10035/xj/as/meetstart'
+comm:
+  access_token: "01b8d3d6d16a44af834f1a9f8b1ae28d"
+  token_secret: "9e2de3b33c4021d77913faa89a0f92e4"
+  mass_sms:
+    url: ''
+  group_record:
+    url: 'http://api.open189.net:10035/xj/as/voicenotice'
+  group_call:
+    url: 'http://api.open189.net:10035/xj/as/meetstart'
+  point_to_point_call:
+    url: 'http://api.open189.net:10035/xj/as/dial'
